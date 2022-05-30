@@ -17,10 +17,18 @@ async function getPSI() {
         var timestamp = document.getElementById('timestamp')
         
         let date = new Date(data.items[0].update_timestamp)
-        console.log(date)
+        let hour = date.getHours();
+        let minutes = date.getMinutes();
+        console.log(hour)
+        console.log(minutes)
+
+        let time = date.toLocaleString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric'
+        })
         var month = date.toLocaleString("default", {month: "long"})
         timestamp.innerHTML = 'Last updated : ' + `${date.getDate()} ` + `${month} ` + `${date.getFullYear()}`
-
+        + ` ${time}`
         var readings = data.items[0].readings
         for (const key in readings) {
             const row = document.createElement('tr')            
